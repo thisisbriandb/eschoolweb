@@ -62,12 +62,11 @@ export default function Home() {
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[1fr_0.95fr]">
             <div>
               <h1 className="font-display text-display">
-                La gestion scolaire{" "}
-                <span className="text-accent">réinventée</span>.
+                Toute votre école.{" "}
+                <span className="text-accent">Un seul logiciel.</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg text-secondary">
-                Une plateforme simple pour gérer votre établissement, fluidifier
-                les échanges et suivre les finances sans complexité inutile.
+                Passez moins de temps à gérer, plus de temps à enseigner.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <DownloadButton className="w-full sm:w-auto" />
