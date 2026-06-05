@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sendContactEmail } from "@/app/actions";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ export default function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -19,15 +21,24 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate sending — replace with real API call
-    setTimeout(() => {
+    try {
+      const result = await sendContactEmail(formData);
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        setError(result.error || "Une erreur est survenue lors de l'envoi.");
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError("Une erreur de réseau est survenue. Veuillez réessayer.");
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1000);
+    }
   }
 
   if (isSubmitted) {
@@ -59,6 +70,7 @@ export default function ContactForm() {
           style={{ marginTop: "1.5rem" }}
           onClick={() => {
             setIsSubmitted(false);
+            setError(null);
             setFormData({
               name: "",
               email: "",
@@ -155,6 +167,12 @@ export default function ContactForm() {
           style={{ resize: "vertical", minHeight: "100px" }}
         />
       </div>
+
+      {error && (
+        <div className="contact-form-full" style={{ color: "#ef4444", fontSize: "0.9rem", marginTop: "0.5rem", textAlign: "center" }}>
+          {error}
+        </div>
+      )}
 
       <div className="contact-form-full" style={{ marginTop: "0.25rem" }}>
         <button

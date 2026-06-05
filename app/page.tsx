@@ -5,346 +5,183 @@ import ContactForm from "./components/ContactForm";
 export const metadata: Metadata = {
   title: "e-school | La gestion scolaire, réinventée",
   description:
-    "e-school est la plateforme tout-en-un qui simplifie l'administration, la planification, la communication et les finances de votre établissement scolaire.",
+    "e-school simplifie la gestion scolaire avec les outils essentiels pour l'administration, la communication et les finances.",
 };
 
 const features = [
   {
-    icon: "ph ph-user-plus",
-    title: "Gestion des inscriptions",
+    icon: "ph ph-buildings",
+    title: "Gestion scolaire",
     description:
-      "Simplifiez le processus d'admission, de la candidature en ligne au dossier de l'élève.",
-    color: "accent" as const,
-  },
-  {
-    icon: "ph ph-calendar-dots",
-    title: "Emplois du temps",
-    description:
-      "Créez et gérez des horaires complexes pour les classes, les enseignants et les salles en quelques clics.",
-    color: "secondary" as const,
-  },
-  {
-    icon: "ph ph-chart-line-up",
-    title: "Suivi financier",
-    description:
-      "Automatisez la facturation des frais de scolarité, suivez les paiements et générez des rapports financiers.",
-    color: "tertiary" as const,
+      "Inscriptions, dossiers élèves, classes et emplois du temps réunis dans un espace clair.",
   },
   {
     icon: "ph ph-chat-circle-dots",
-    title: "Communication centralisée",
+    title: "Communication",
     description:
-      "Un portail unique pour les annonces, les messages directs entre parents et professeurs, et le partage de documents.",
-    color: "secondary" as const,
+      "Messages, annonces et documents partagés entre l'administration, les parents et les enseignants.",
   },
   {
-    icon: "ph ph-exam",
-    title: "Notes et bulletins",
+    icon: "ph ph-chart-line-up",
+    title: "Finances",
     description:
-      "Saisie facile des notes, calcul automatique des moyennes et génération de bulletins personnalisés.",
-    color: "tertiary" as const,
-  },
-  {
-    icon: "ph ph-chart-bar",
-    title: "Rapports et analyses",
-    description:
-      "Accédez à des tableaux de bord clairs pour prendre des décisions éclairées sur la performance de votre établissement.",
-    color: "accent" as const,
+      "Facturation, paiements et suivi financier accessibles sans multiplier les outils.",
   },
 ];
-
-const testimonials = [
-  {
-    quote:
-      "e-school a transformé notre administration. Nous avons gagné un temps précieux sur les tâches répétitives, ce qui nous permet de nous concentrer davantage sur nos élèves.",
-    name: "Marc Dubois",
-    role: "Directeur, Lycée Victor Hugo",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&q=80",
-  },
-  {
-    quote:
-      "La plateforme est incroyablement intuitive. L'intégration s'est faite sans heurts et le support client est exceptionnel. La communication avec les parents n'a jamais été aussi simple.",
-    name: "Sophie Lemoine",
-    role: "Responsable Pédagogique, École Les Colibris",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&q=80",
-  },
-  {
-    quote:
-      "Le module financier est un véritable atout. Le suivi des paiements est clair, et la génération de rapports nous a permis d'avoir une vision précise de notre budget.",
-    name: "David Martin",
-    role: "Gestionnaire Financier, Groupe Scolaire Pasteur",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&q=80",
-  },
-];
-
-
-
-function getColorClasses(color: "accent" | "secondary" | "tertiary") {
-  const map = {
-    accent: {
-      bg: "bg-[color-mix(in_srgb,var(--accent)_10%,transparent)]",
-      text: "text-[var(--accent)]",
-    },
-    secondary: {
-      bg: "bg-[color-mix(in_srgb,var(--secondary)_10%,transparent)]",
-      text: "text-[var(--secondary)]",
-    },
-    tertiary: {
-      bg: "bg-[color-mix(in_srgb,var(--tertiary)_10%,transparent)]",
-      text: "text-[var(--tertiary)]",
-    },
-  };
-  return map[color];
-}
 
 export default function Home() {
   return (
     <>
-      {/* ====== HEADER ====== */}
       <header
-        className="sticky top-0 z-50 w-full backdrop-blur-sm border-b"
+        className="sticky top-0 z-50 w-full border-b backdrop-blur-sm"
         style={{
-          backgroundColor: "rgba(240, 253, 249, 0.8)",
+          backgroundColor: "rgba(240, 253, 249, 0.86)",
           borderColor: "var(--stroke-subtle)",
         }}
       >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#" className="font-display text-2xl font-bold text-primary">
             e-school
           </a>
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden items-center gap-2 md:flex">
             <a className="premium-nav-item" href="#fonctionnalites">
               Fonctionnalités
-            </a>
-            <a className="premium-nav-item" href="#temoignages">
-              Témoignages
             </a>
             <a className="premium-nav-item" href="#contact">
               Contact
             </a>
           </nav>
-          <div className="flex items-center gap-4">
-            <a className="premium-btn-primary" href="#cta_finale">
-              Nous contacter
-            </a>
-          </div>
+          <a className="premium-btn-secondary hidden sm:inline-flex" href="#contact">
+            Demander une démo
+          </a>
         </div>
       </header>
 
-      {/* ====== MAIN ====== */}
       <main className="flex-1">
-        {/* ---- Hero ---- */}
         <section className="py-20 md:py-24">
-          <div className="max-w-6xl mx-auto px-6 text-center">
-            <div className="max-w-4xl mx-auto">
-              <h1 className="font-display text-display animate-fade-in-up">
-                La gestion scolaire,{" "}
+          <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[1fr_0.95fr]">
+            <div>
+              <h1 className="font-display text-display">
+                La gestion scolaire{" "}
                 <span className="text-accent">réinventée</span>.
               </h1>
-              <p className="text-lg text-secondary mt-6 max-w-2xl mx-auto animate-fade-in-up animation-delay-100">
-                e-school est la plateforme tout-en-un qui simplifie
-                l&apos;administration, la planification, la communication et les
-                finances de votre établissement. Libérez du temps pour ce qui
-                compte vraiment&nbsp;: l&apos;éducation.
+              <p className="mt-6 max-w-2xl text-lg text-secondary">
+                Une plateforme simple pour gérer votre établissement, fluidifier
+                les échanges et suivre les finances sans complexité inutile.
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-200">
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <DownloadButton className="w-full sm:w-auto" />
-                <a
-                  className="premium-btn-secondary w-full sm:w-auto"
-                  href="#fonctionnalites"
-                >
-                  Découvrir les fonctionnalités
+                <a className="premium-btn-secondary w-full sm:w-auto" href="#contact">
+                  Demander une démo
                 </a>
               </div>
             </div>
-            <div className="mt-16 animate-scale-in animation-delay-300">
-              <div
-                className="aspect-video w-full premium-card"
-                style={{ padding: "0.5rem" }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt="Aperçu du tableau de bord de e-school avec des graphiques et des statistiques"
-                  className="w-full h-full object-cover rounded-xl"
-                  src="./bg.png"
-                />
-              </div>
+
+            <div
+              className="overflow-hidden rounded-xl border bg-surface-card p-2 shadow-sm"
+              style={{ borderColor: "var(--stroke-subtle)" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt="Aperçu du tableau de bord e-school"
+                className="aspect-video h-full w-full rounded-lg object-cover"
+                src="./bg.png"
+              />
             </div>
           </div>
         </section>
 
-        {/* ---- Features ---- */}
-        <section className="py-24 bg-surface-muted" id="fonctionnalites">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="font-display text-h1">
-                Une plateforme, tout pour gérer.
-              </h2>
-              <p className="text-lg text-secondary mt-4">
-                Centralisez toutes vos opérations scolaires avec nos modules
-                intuitifs, conçus pour les administrateurs, les enseignants, les
-                élèves et les parents.
+        <section
+          className="border-y bg-surface-card py-20"
+          id="fonctionnalites"
+          style={{ borderColor: "var(--stroke-subtle)" }}
+        >
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="max-w-2xl">
+              <h2 className="font-display text-h1">3 fonctionnalités clés</h2>
+              <p className="mt-4 text-lg text-secondary">
+                L&apos;essentiel pour piloter une école au quotidien, sans
+                disperser les équipes.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-              {features.map((feature, i) => {
-                const colors = getColorClasses(feature.color);
-                return (
-                  <div
-                    key={feature.title}
-                    className={`premium-card p-8 flex flex-col items-start animate-fade-in-up animation-delay-${(i + 1) * 100}`}
-                  >
-                    <div
-                      className={`p-3 ${colors.bg} rounded-xl ${colors.text} mb-4`}
-                    >
-                      <i
-                        className={`${feature.icon} block`}
-                        style={{ fontSize: "2rem" }}
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <h3 className="font-display text-h3">{feature.title}</h3>
-                    <p className="text-body text-secondary mt-2">
-                      {feature.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
-        {/* ---- Testimonials ---- */}
-        <section className="py-24" id="temoignages">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="font-display text-h1">
-                Ils nous font confiance.
-              </h2>
-              <p className="text-lg text-secondary mt-4">
-                Découvrez pourquoi des centaines d&apos;établissements, des
-                écoles primaires aux universités, ont choisi e-school pour
-                optimiser leur gestion.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
-              {testimonials.map((testimonial) => (
-                <div key={testimonial.name} className="premium-card p-8">
-                  <blockquote className="text-body text-secondary">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </blockquote>
-                  <div className="flex items-center mt-6">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      alt={`Portrait de ${testimonial.name}`}
-                      className="w-12 h-12 rounded-full object-cover"
-                      src={testimonial.image}
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {features.map((feature) => (
+                <article
+                  key={feature.title}
+                  className="rounded-lg border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-surface-card"
+                  style={{ borderColor: "var(--stroke-subtle)" }}
+                >
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-[color-mix(in_srgb,var(--accent)_12%,transparent)] text-accent">
+                    <i
+                      className={`${feature.icon} block`}
+                      style={{ fontSize: "1.6rem" }}
+                      aria-hidden="true"
                     />
-                    <div className="ml-4">
-                      <p className="font-semibold text-primary">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-body-sm text-secondary">
-                        {testimonial.role}
-                      </p>
-                    </div>
                   </div>
-                </div>
+                  <h3 className="font-display text-h3">{feature.title}</h3>
+                  <p className="mt-3 text-body text-secondary">
+                    {feature.description}
+                  </p>
+                </article>
               ))}
             </div>
+
+            <a
+              className="mt-10 inline-flex items-center gap-2 font-medium text-accent transition-all duration-300 hover:gap-3"
+              href="#contact"
+            >
+              Voir toutes les fonctionnalités
+              <i className="ph ph-arrow-right" aria-hidden="true" />
+            </a>
           </div>
         </section>
 
-        {/* ---- Contact Form ---- */}
-        <section className="py-24 bg-surface-muted" id="contact">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="max-w-2xl mx-auto">
-              <div className="text-center">
-                <h2 className="font-display text-h1">
-                  Demandez plus d&apos;informations
-                </h2>
-                <p className="text-lg text-secondary mt-4">
-                  Vous souhaitez en savoir plus sur e-school ? Remplissez ce
-                  formulaire et notre équipe vous recontactera rapidement.
-                </p>
-              </div>
-              <div className="premium-card p-8 md:p-10 mt-12">
-                <ContactForm />
+        <section className="py-20 md:py-24" id="contact">
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[0.8fr_1fr]">
+            <div>
+              <h2 className="font-display text-h1">Parlons de votre école</h2>
+              <p className="mt-4 text-lg text-secondary">
+                Dites-nous ce que vous souhaitez simplifier. Nous vous
+                recontactons pour une démonstration adaptée à votre
+                établissement.
+              </p>
+              <div className="mt-8 flex items-center gap-3 text-body text-secondary">
+                <i
+                  className="ph ph-whatsapp-logo text-accent"
+                  style={{ fontSize: "1.4rem" }}
+                  aria-hidden="true"
+                />
+                <a
+                  className="transition-all duration-300 hover:text-accent"
+                  href="https://wa.me/33745982805?text=Bonjour%2C%20je%20souhaite%20obtenir%20plus%20d%27informations%20sur%20la%20solution%20e-school."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Contacter e-school sur WhatsApp
+                </a>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* ---- CTA ---- */}
-        <section className="py-24" id="cta_finale">
-          <div className="max-w-6xl mx-auto px-6">
             <div
-              className="premium-card p-12 md:p-16 rounded-2xl text-center"
-              style={{
-                background:
-                  "linear-gradient(to bottom right, color-mix(in srgb, var(--accent) 20%, transparent), color-mix(in srgb, var(--secondary) 20%, transparent))",
-              }}
+              className="rounded-lg border bg-surface-card p-6 md:p-8"
+              style={{ borderColor: "var(--stroke-subtle)" }}
             >
-              <div className="max-w-2xl mx-auto">
-                <h2 className="font-display text-h1 text-primary">
-                  Prêt à transformer votre gestion scolaire&nbsp;?
-                </h2>
-                <p className="text-lg mt-4 text-secondary">
-                  Planifiez une démonstration personnalisée avec notre équipe
-                  pour découvrir comment e-school peut s&apos;adapter aux
-                  besoins spécifiques de votre établissement.
-                </p>
-                <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <a className="premium-btn-primary w-full sm:w-auto" href="#contact">
-                    Nous contacter
-                  </a>
-                  <DownloadButton className="w-full sm:w-auto" variant="secondary" />
-                </div>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </section>
       </main>
 
-      {/* ====== FOOTER ====== */}
       <footer
-        className="border-t bg-surface-muted"
+        className="border-t"
         style={{ borderColor: "var(--stroke-subtle)" }}
       >
-        <div className="max-w-6xl mx-auto px-6 py-12">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-            <div className="mb-6 md:mb-0">
-              <a
-                className="font-display text-2xl font-bold text-primary"
-                href="#"
-              >
-                e-school
-              </a>
-              <p className="text-body-sm text-secondary mt-2">
-                Simplifier la gestion pour une meilleure éducation.
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-center gap-x-2 gap-y-2">
-              <a className="premium-nav-item text-sm" href="#">
-                Politique de confidentialité
-              </a>
-              <a className="premium-nav-item text-sm" href="#">
-                Conditions d&apos;utilisation
-              </a>
-              <a className="premium-nav-item text-sm" href="#">
-                FAQ
-              </a>
-            </div>
-          </div>
-          <div
-            className="mt-8 pt-8 border-t text-center text-secondary text-sm"
-            style={{ borderColor: "var(--stroke-subtle)" }}
-          >
-            <p>© 2024 e-school. Tous droits réservés.</p>
-          </div>
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-8 text-body-sm text-secondary sm:flex-row sm:items-center sm:justify-between">
+          <a className="font-display text-xl font-bold text-primary" href="#">
+            e-school
+          </a>
+          <p>© 2026 e-school. Tous droits réservés.</p>
         </div>
       </footer>
     </>

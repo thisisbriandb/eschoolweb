@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { sendDownloadNotificationEmail } from "@/app/actions";
 
 export default function DownloadButton({
   className = "",
@@ -52,22 +53,26 @@ export default function DownloadButton({
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      const link = document.createElement("a");
-      link.href = "/Eschool-1.1.5.exe";
-      link.download = "Eschool-1.1.5.exe";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    try {
+      await sendDownloadNotificationEmail(formData);
+    } catch (err) {
+      console.error("Failed to send download notification:", err);
+    }
 
-      setIsSubmitting(false);
-      setIsOpen(false);
-      setFormData({ name: "", email: "", phone: "", organization: "" });
-    }, 600);
+    const link = document.createElement("a");
+    link.href = "/Eschool-1.1.5.exe";
+    link.download = "Eschool-1.1.5.exe";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setIsSubmitting(false);
+    setIsOpen(false);
+    setFormData({ name: "", email: "", phone: "", organization: "" });
   }
 
   function handleBackdropClick(e: React.MouseEvent<HTMLDivElement>) {
